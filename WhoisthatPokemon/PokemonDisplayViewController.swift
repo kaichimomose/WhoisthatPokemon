@@ -22,7 +22,7 @@ protocol PokeDelegate: class {
 
 import UIKit
 
-class PokemonDisplayViewController: UIViewController {
+class PokemonDisplayViewController: UIViewController, PokeDelegate {
     
     @IBOutlet weak var guessedPokemon: UILabel!
     @IBOutlet weak var pokeDisplayImageVIew: UIImageView!
@@ -66,8 +66,14 @@ class PokemonDisplayViewController: UIViewController {
         
         // TODO: Make sure to set the *delegate* on the ChoosePokemonViewController
         
+        choosePokemonController.delegate = self
+        
     self.navigationController?.pushViewController(choosePokemonController, animated: true)
         
+    }
+    
+    func didSelectPokemon(pokemon: Pokemon) {
+        checkGuessedPokemonAndShowPokemon(selectedPokemon: pokemon)
     }
     
     
